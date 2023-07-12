@@ -10,7 +10,7 @@ import { Course } from './../model/course';
   // o serviço é responsável para passar as informações para o componente
 export class CoursesService {
   // aqui eu criei uma variavel privada com o readonly para evitar modificações e chamei ela de API e passei o caminho do json que eu criei com os dados que quero passar do array de course
-  private readonly  API = './assets/courses.json';
+  private readonly  API = 'api/courses';
 
   // aqui é onde usamos o HttpClient, que no caso é onde é feito a chamada da api para pegar dados do backend/bd
   constructor(private httpClient: HttpClient) { }
