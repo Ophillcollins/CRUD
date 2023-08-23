@@ -1,0 +1,28 @@
+<mat-card>
+
+  <mat-toolbar color="primary">Detalhes do curso</mat-toolbar><br />
+
+  <mat-card-content class="margintool">
+    <form [formGroup]="form" class="min-width">
+      <mat-form-field class="full-width">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="category">
+          <mat-option value="null"></mat-option>
+          <mat-option value="front-end">Front-end</mat-option>
+          <mat-option value="back-end">Back-end</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions class="button">
+    <button mat-raised-button color="accent" (click)="onSubmit()">Salvar</button>
+    <button mat-raised-button color="warn" class="spacing" (click)="onCancel()">Cancelar</button>
+  </mat-card-actions>
+</mat-card>
