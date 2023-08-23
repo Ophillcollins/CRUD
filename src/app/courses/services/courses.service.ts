@@ -22,9 +22,14 @@ export class CoursesService {
         //neste caso o first é utilizado para chamar os dados uma vez só, já que não se trata de um streaming e que ocorre varias mudanças.
         first(),
         // o delay é para que seja configurado o tempo que o spinner vai ficar carregando antes das informações chegarem.
-        delay(500),
+          delay(500),
+            tap(courses => console.log(courses))
       );
 
+  }
+
+  save (record: Partial<Course>) {
+    return this.httpClient.post<Course>(this.API, record).pipe(first());
   }
 
 }
