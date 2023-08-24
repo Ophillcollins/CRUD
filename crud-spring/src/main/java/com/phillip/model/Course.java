@@ -23,7 +23,8 @@ public class Course {
     @Id    
     // aqui é onde o o valor é gerado automaticamente no bd quando for feito um insert.
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @jsonProperty("_id")
+    private long _id;
 
     @Column(length = 200, nullable = false)
     private String name;
@@ -31,7 +32,4 @@ public class Course {
     @Column(length = 10, nullable = false)
     private String category;
 
-    @Column(length = 15, nullable = false)
-    private String time;
-    
 }
