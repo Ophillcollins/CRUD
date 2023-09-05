@@ -32,4 +32,7 @@ public class Course {
     @Column(length = 10, nullable = false)
     private String category;
 
+    // @Column (length =  6, nullable = false)
+    // private String time;
+
 }
