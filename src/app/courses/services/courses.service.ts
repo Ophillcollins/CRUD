@@ -23,7 +23,6 @@ export class CoursesService {
         first(),
         // o delay é para que seja configurado o tempo que o spinner vai ficar carregando antes das informações chegarem.
           delay(500),
-            tap(courses => console.log(courses))
       );
 
   }
@@ -33,7 +32,19 @@ export class CoursesService {
   }
 
   save (record: Partial<Course>) {
+    if(record._id) {
+      return this.update(record)
+    }
+    return this.create(record);
+  }
+
+  private create (record: Partial<Course>) {
     return this.httpClient.post<Course>(this.API, record).pipe(first());
+  }
+
+  private update(record: Partial<Course>) {
+    return this.httpClient.put<Course>(`${this.API}/${record._id}`, record).pipe(first());
+
   }
 
 }
