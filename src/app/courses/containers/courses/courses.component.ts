@@ -6,6 +6,7 @@ import { ErrorDialogComponent } from '../../../shared/components/error-dialog/er
 import { Course } from '../../model/course';
 import { CoursesService } from '../../services/courses.service';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-courses',
@@ -15,22 +16,16 @@ import { ActivatedRoute, Router, Routes } from '@angular/router';
 export class CoursesComponent implements OnInit {
   //inicializando a variável aqui..
 
-  courses$: Observable<Course[]>;
+  courses$: Observable<Course[]> | null = null;
 
   constructor(
     private coursesService: CoursesService,
     public dialog: MatDialog,
     private router: Router,
     private routes: ActivatedRoute,
-
+    private snackBar: MatSnackBar
   ) {
-    this.courses$ = this.coursesService.list()
-      .pipe(
-        catchError((error) => {
-          this.onError('Erro ao carregar cursos.');
-        return of([]);
-        })
-      );
+    this.refresh();
     }
 
   onError(errorMsg: string) {
@@ -51,4 +46,27 @@ export class CoursesComponent implements OnInit {
   onEdit(course: Course) {
     this.router.navigate(['edit', course._id], { relativeTo: this.routes })
   }
+  onDelete(course: Course) {
+    this.coursesService.delete(course._id).subscribe(
+      () => {
+        this.refresh()
+        this.snackBar.open('Curso removido com sucesso!', 'X', {duration: 3000,
+        verticalPosition: 'top',
+        horizontalPosition: 'center'
+        });
+      },
+        () => this.onError('Erro ao tentar remover curso!')
+    );
+  }
+
+  refresh() {
+    this.courses$ = this.coursesService.list()
+      .pipe(
+        catchError((error) => {
+          this.onError('Erro ao carregar cursos.');
+        return of([]);
+        })
+      );
+  }
+
 }
