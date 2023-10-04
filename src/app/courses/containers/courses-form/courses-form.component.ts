@@ -18,7 +18,7 @@ export class CoursesFormComponent implements OnInit {
     _id: [''],
     name: ['',
       [Validators.required,
-      Validators.minLength(5),
+      Validators.minLength(3),
       Validators.maxLength(100)]],
     category: ['', [Validators.required]]
   });
@@ -63,7 +63,7 @@ export class CoursesFormComponent implements OnInit {
     }
 
     if(campo?.hasError('minlength')) {
-      const tamanhoMinimo: number = campo.errors ? campo.errors['minlength']['requiredLength']: 5;
+      const tamanhoMinimo: number = campo.errors ? campo.errors['minlength']['requiredLength']: 3;
       return `Tamanho mínimo de caractéres é de ${tamanhoMinimo}`;
     }
 
