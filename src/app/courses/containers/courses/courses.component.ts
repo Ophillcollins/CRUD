@@ -5,7 +5,7 @@ import { ErrorDialogComponent } from '../../../shared/components/error-dialog/er
 
 import { Course } from '../../model/course';
 import { CoursesService } from '../../services/courses.service';
-import { ActivatedRoute, Router, Routes } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogConfirmationComponent } from 'src/app/shared/components/dialog-confirmation/dialog-confirmation.component';
 
